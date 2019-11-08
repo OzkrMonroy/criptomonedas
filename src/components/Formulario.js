@@ -3,7 +3,7 @@ import Criptomoneda from './Criptomoneda'
 import Error from './Error'
 import axios from 'axios'
 
-function Formulario() {
+function Formulario({guardarMoneda, guardarCriptomoneda}) {
   useEffect(() => {
     consultarApi()
   }, [])
@@ -20,19 +20,21 @@ function Formulario() {
   }
 
   const [criptomonedas, guardarCriptomonedas] = useState([])
-  const [criptomoneda, guardarCriptomoneda] = useState('')
-  const [moneda, guardarMoneda] = useState('')
+  const [criptoCotizar, guardarCriptoCotizar] = useState('')
+  const [monedaCotizar, guardarMonedaCotizar] = useState('')
   const [error, guardarError] = useState(false)
 
   const cotizarMoneda = e => {
     e.preventDefault()
 
-    if(moneda === '' || criptomoneda === '') {
+    if(monedaCotizar === '' || criptoCotizar === '') {
       guardarError(true)
       return
     }
 
     guardarError(false)
+    guardarMoneda(monedaCotizar)
+    guardarCriptomoneda(criptoCotizar)
   }
 
   const mensaje = 'Todos los campos son obligatorios'
@@ -44,7 +46,7 @@ function Formulario() {
       <div className="row">
         <label htmlFor="coin">Elige tu moneda</label>
         <select name="coin" id="coin" className="u-full-width"
-          onChange={ e => guardarMoneda(e.target.value)}>
+          onChange={ e => guardarMonedaCotizar(e.target.value)}>
           <option value="">-Elige tu moneda-</option>
           <option value="USD">Dólar americano</option>
           <option value="MXN">Peso méxicano</option>
@@ -56,7 +58,7 @@ function Formulario() {
       <div className="row">
         <label htmlFor="cryptocoin">Elige tu criptomoneda</label>
         <select name="cryptocoin" id="cryptocoin" className="u-full-width"
-          onChange={ e => guardarCriptomoneda(e.target.value)}>
+          onChange={ e => guardarCriptoCotizar(e.target.value)}>
           <option value="">-Elige tu criptomoneda-</option>
           {criptomonedas.map((cripto, index) => (
             <Criptomoneda

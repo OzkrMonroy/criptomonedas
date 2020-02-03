@@ -1,9 +1,12 @@
 import React, { useState, useEffect } from 'react';
+import axios from 'axios'
+
 import imagen from './cryptomonedas.png'
 import Formulario from './components/Formulario'
 import Spinner from './components/Spinner/Spinner'
 import Resultado from './components/Resultado'
-import axios from 'axios'
+// Styles
+import { Container, Image, Heading } from './styles'
 
 function App() {
   const [moneda, guardarMoneda] = useState('')
@@ -36,23 +39,19 @@ function App() {
   const component = (cargando) ? <Spinner/> : <Resultado resultado={resultado}/>
 
   return (
-    <div className="App">
-      <div className="container">
-        <div className="row">
+    <Container>
           <div className="one-half column">
-            <img src={imagen} alt="imagen criptomonedas" className="logotipo"/>
+            <Image src={imagen} alt="imagen criptomonedas" className="logotipo"/>
           </div>
           <div className="one-half column">
-            <h1>Cotiza criptomonedas al instante</h1>
+            <Heading>Cotiza criptomonedas al instante</Heading>
             <Formulario
               guardarMoneda={guardarMoneda}
               guardarCriptomoneda={guardarCriptomoneda}
             />
             {component}
           </div>
-        </div>
-      </div>
-    </div>
+    </Container>
   );
 }
 

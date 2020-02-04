@@ -1,9 +1,13 @@
 import React, { useState, useEffect } from 'react';
-import Criptomoneda from './Criptomoneda'
-import Error from './Error'
+import Criptomoneda from '../Criptomoneda'
+import Error from '../Error'
 import axios from 'axios'
+// Styles
+import { Button } from './form'
+import useCoin from '../../hooks/useCoin'
 
 function Formulario({guardarMoneda, guardarCriptomoneda}) {
+
   useEffect(() => {
     consultarApi()
   }, [])
@@ -40,20 +44,21 @@ function Formulario({guardarMoneda, guardarCriptomoneda}) {
   const mensaje = 'Todos los campos son obligatorios'
   const errorComponent = (error) ? <Error mensaje={mensaje}/> : null
 
+  const COINS = [
+    {key: 'USD', name: 'Dólar americano'},
+    {key: 'MXN', name: 'Peso mexicano'},
+    {key: 'GTQ', name: 'Quétzal guatemalteco'},
+    {key: 'GBP', name: 'Libras'},
+    {key: 'EUR', name: 'Euro'}
+  ]
+
+  const [coin, SelectCoin, setCoin] = useCoin('Elige tu moneda', '', COINS)
+
   return (
     <form onSubmit={cotizarMoneda}>
       {errorComponent}
       <div className="row">
-        <label htmlFor="coin">Elige tu moneda</label>
-        <select name="coin" id="coin" className="u-full-width"
-          onChange={ e => guardarMonedaCotizar(e.target.value)}>
-          <option value="">-Elige tu moneda-</option>
-          <option value="USD">Dólar americano</option>
-          <option value="MXN">Peso méxicano</option>
-          <option value="GTQ">Quetzal guatemalteco</option>
-          <option value="GBP">Libras</option>
-          <option value="EUR">Euro</option>
-        </select>
+        <SelectCoin />
       </div>
       <div className="row">
         <label htmlFor="cryptocoin">Elige tu criptomoneda</label>
@@ -67,7 +72,7 @@ function Formulario({guardarMoneda, guardarCriptomoneda}) {
           ))}
         </select>
       </div>
-      <input type="submit" className="button-primary u-full-width" value="Cotizar"/>
+      <Button type="submit" value="Cotizar"/>
     </form>
   )
 }

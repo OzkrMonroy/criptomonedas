@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios'
 
 import imagen from './cryptomonedas.png'
-import Formulario from './components/Formulario'
+import Formulario from './components/Form/Formulario'
 import Spinner from './components/Spinner/Spinner'
 import Resultado from './components/Resultado'
 // Styles
@@ -40,10 +40,10 @@ function App() {
 
   return (
     <Container>
-          <div className="one-half column">
+          <div>
             <Image src={imagen} alt="imagen criptomonedas" className="logotipo"/>
           </div>
-          <div className="one-half column">
+          <div>
             <Heading>Cotiza criptomonedas al instante</Heading>
             <Formulario
               guardarMoneda={guardarMoneda}

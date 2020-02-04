@@ -3,7 +3,7 @@ import Criptomoneda from '../Criptomoneda'
 import Error from '../Error'
 import axios from 'axios'
 // Styles
-import { Button } from './form'
+import { Button } from './formStyles'
 import useCoin from '../../hooks/useCoin'
 
 function Formulario({guardarMoneda, guardarCriptomoneda}) {
@@ -52,7 +52,7 @@ function Formulario({guardarMoneda, guardarCriptomoneda}) {
     {key: 'EUR', name: 'Euro'}
   ]
 
-  const [coin, SelectCoin, setCoin] = useCoin('Elige tu moneda', '', COINS)
+  const [coin, SelectCoin] = useCoin('Elige tu moneda', '', COINS)
 
   return (
     <form onSubmit={cotizarMoneda}>

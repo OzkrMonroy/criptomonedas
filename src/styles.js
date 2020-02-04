@@ -32,3 +32,24 @@ export const Heading = styled.h1`
     background-color: #66A2FE;
   }
 `
+// Styles for Custom Hooks
+export const Label = styled.label`
+  font-family: 'Bebas Neue', cursive;
+  color: #FFF;
+  text-transform: uppercase;
+  font-weight: 700;
+  font-size: 2.4rem;
+  margin-top: 2rem;
+  margin-bottom: 2rem;
+  display: block;
+`
+
+export const Select = styled.select`
+  display: block;
+  width: 100%;
+  padding: 1rem;
+  appearance: none;
+  border-radius: 10px;
+  border: none;
+  font-size: 1.2rem;
+`

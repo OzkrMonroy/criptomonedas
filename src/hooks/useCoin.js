@@ -1,13 +1,15 @@
 import React, { Fragment, useState } from 'react';
+// Styles
+import { Label, Select } from '../styles'
 
-const useCoin = ({label, initialState, coinsOptions}) => {
+const useCoin = (label, initialState, coinsOptions) => {
 
   const [state, setState] = useState(initialState)
   
   const SelectCoin = () => (
     <Fragment>
-      <input>{label}</input>
-      <select 
+      <Label>{label}</Label>
+      <Select 
         onChange={e => setState(e.target.value)}
         value={state}
       >
@@ -15,7 +17,7 @@ const useCoin = ({label, initialState, coinsOptions}) => {
         {coinsOptions.map(option => (
           <option key={option.key} value={option.key}>{option.name}</option>
         ))}
-      </select>
+      </Select>
     </Fragment>
   )
   
